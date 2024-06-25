@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        .area {
+        background-color: cadetblue; 
+        position: relative;
+        }
+        .head {
+        width: 20px; 
+        height: 20px;
+        background-color: black;
+        position: absolute;
+        display: none;
+        }
+        .food {
+        width: 20px; 
+        height: 20px;
+        background-color: red;
+         position: absolute;
+        top: 100px; 
+        left: 100px;
+        }
+        </style>
+    </head>
+    <body onkeydown="handleKeydown (event) ;">
+        <div class="area" id="area">
+<div class="food" id="food"></div>
+<div class="head" id="head"></div>
+</div>
+<button onclick="changeDirection ('up');">Up</button> 
+<button onclick="changeDirection ('down');">Down</button> 
+<button onclick="changeDirection ('right');">Right</button> 
+<button onclick="changeDirection ('left');">Left</button>
+<script>
+const scale = 20;
+const head = document.getElementById ("head");
+const area = document.getElementById("area");
+const areaWidth=40;
+const areaHeight=16;
+const food={
+    x:5,
+    y:5,
+};
+let direction = "up"; // top, left, down
+
+function resetGame () {
+
+area.style.width = `${areaWidth * scale}px`;
+
+area.style.height = `${areaHeight * scale}px`;
+
+head.style.display = "block";
+
+render ();
+}
+
+function handleKeydown(event) {
+    console. log (event.key);
+
+switch (event.key) {
+    case "ArrowDown":
+    case "w":
+        changeDirection("up");
+        break;
+    case "ArrowDown": 
+    case "s":
+        changeDirection("down");
+        break;
+    case "ArrowRight":
+    case "d":
+        changeDirection("right");
+        break;
+    case "ArrownLeft":
+    case "a":
+        changeDirection("left");
+        break;
+   }
+}
+let positionX=5;
+let positionY=5;
+function changeDirection(value){
+    if(direction==="left"|| direction==="right"){
+        if(value==="up" || value=== "down") {
+            direction=value;
+        }
+    }else if (direction==="down" || direction ==="up"){
+        if(value==="right" || value==="left"){
+            direction=value;
+        }
+    }
+}
+function goRight(){
+    positionX +=1;
+    if(positionX> areaWidth-1){
+        positionX=0;
+    }
+}
+function goLeft(){
+    positionX-=1;
+    if (positionX<0){
+        positionX=areaWidth-1;
+    }
+
+}
+function goDown(){
+    positionY+=1;
+    if(positionY>areaHeight-1){
+        positionY=0;
+    }
+}
+function goUp(){
+    positionY-=1;
+    if(positionY<0){
+        positionY=areaHeight-1;
+    }
+}
+function render(){
+    if (food.x===positionX&&food.y===positionY){
+        console.log("Swallowed food");
+    }
+    head.style.left= `${positionX* scale}px`;
+    head.style.top=`${positionY*scale}px`;
+}
+function gameLoop(){
+    switch(direction){
+        case "up":
+        goUp();
+        break;
+        case "down":
+            goDown();
+            break;
+            case "right":
+            goRight ();
+            break;
+            case "left":
+                goLeft();
+                break;
+    }
+    render();
+}
+resetGame();
+let speed=200;
+setInterval(gameLoop, speed);
+
+
+
+     
+
+        </script>
+    </body>
+</html>

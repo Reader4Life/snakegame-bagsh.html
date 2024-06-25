@@ -1,0 +1,35 @@
+<script>
+    const names = ["Bayaraa", "Delger", "Urelee", "Zolboo"];
+    
+    // Removing the last element from the 'names' array
+    names.pop();
+
+    // Adding a new element "Bold" to the end of the 'names' array
+    names.push("Bold");
+
+    // Removing the first element from the 'names' array
+    names.shift();
+
+    // Adding a new element "Sarnai" to the beginning of the 'names' array
+    names.unshift("Sarnai");
+
+    console.log(names); // Output: ["Sarnai", "Delger", "Urelee", "Bold"]
+
+    // Accessing the third element of the 'names' array (indexing starts from 0)
+    const thirdName = names[2];
+    console.log(thirdName); // Output: "Urelee"
+
+    // Finding the index of "Urelee" in the 'names' array using indexOf() method
+    const position = names.indexOf("Urelee");
+    console.log(position); // Output: 2
+
+    // Declaring an array containing ages
+    const ages = [21, 33, 35, 16, 12, 13];
+
+    // Finding the index of the first element less than 18 in the 'ages' array using findIndex() method
+    const index = ages.findIndex(function(item) {
+        return item < 18;
+    });
+
+    console.log(index); // Output: 3 (index of first element less than 18, which is 16)
+</script>

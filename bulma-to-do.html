@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List with Bulma</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered">To-Do List</h1>
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input id="taskInput" class="input" type="text" placeholder="Enter a task">
+                </div>
+                <div class="control">
+                    <a id="addTaskBtn" class="button is-info">Add Task</a>
+                </div>
+            </div>
+         
+            <div id="taskList" class="content ">
+                <!-- Task items will be added dynamically here -->
+            </div>
+            <div id="taskList" class="content pt-6">
+            </div>
+            </div>
+    </section>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const taskInput = document.getElementById('taskInput');
+    const addTaskBtn = document.getElementById('addTaskBtn');
+    const taskList = document.getElementById('taskList');
+
+    addTaskBtn.addEventListener('click', function() {
+        const taskText = taskInput.value.trim();
+
+        if (taskText !== '') {
+            // Create task item
+            const taskItem = document.createElement('div');
+            taskItem.classList.add('box'); // Added 'box' class for Bulma styling
+
+            taskItem.innerHTML = `
+                <label class="checkbox">
+                    <input type="checkbox">
+                    <span>${taskText}</span>
+                </label>
+                <button class="button is-danger is-small">Delete</button>
+            `;
+
+            // Append task item to task list
+            taskList.appendChild(taskItem);
+
+            // Clear input field after adding task
+            taskInput.value = '';
+
+            // Add event listener to delete button
+            const deleteBtn = taskItem.querySelector('button');
+            deleteBtn.addEventListener('click', function() {
+                taskItem.remove(); // Remove task item from DOM
+            });
+        }
+    });
+});
+
+
+    </script>
+</body>
+</html>
+

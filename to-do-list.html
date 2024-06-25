@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List App</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .todo-container {
+        width: 300px;
+        background-color: #1b79bc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    
+    .todo-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .todo-item input {
+        margin-right: 10px;
+    }
+</style>
+</head>
+<body>
+    <div class="todo-container">
+        <h2>To-Do List</h2>
+        <div id="todo-list"></div>
+        <div>
+            <input type="text" id="todo-input" placeholder="Enter a new task">
+            <button id="add-button">Add</button>
+            <button id="clear-button">Clear All</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addButton = document.getElementById('add-button');
+            const clearButton = document.getElementById('clear-button');
+            const todoInput = document.getElementById('todo-input');
+            const todoList = document.getElementById('todo-list');
+
+            addButton.addEventListener('click', function() {
+                const todoText = todoInput.value.trim();
+                if (todoText === '') return;
+
+                const todoItem = document.createElement('div');
+                todoItem.classList.add('todo-item');
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+
+                const span = document.createElement('span');
+                span.textContent = todoText;
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.addEventListener('click', function() {
+                    todoItem.remove();
+                });
+
+                todoItem.appendChild(checkbox);
+                todoItem.appendChild(span);
+                todoItem.appendChild(removeButton);
+
+                todoList.appendChild(todoItem);
+                todoInput.value = '';
+            });
+
+            clearButton.addEventListener('click', function() {
+                todoList.innerHTML = '';
+            });
+        });
+    </script>
+</body>
+</html>

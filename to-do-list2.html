@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List App</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+    .container {
+        width: 400px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+    }
+    input[type="text"] {
+        width: calc(100% - 80px);
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+    button {
+        padding: 8px 16px;
+        font-size: 16px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #todo-list {
+        margin-top: 20px;
+    }
+    .todo-item {
+        margin-bottom: 5px;
+        padding: 8px;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <div style="display: flex;">
+            <input type="text" id="todo-input" placeholder="Enter a task...">
+            <button onclick="addTodo()">Add Task</button>
+        </div>
+
+        <div id="todo-list">
+            <!-- To-Do items will be added here -->
+        </div>
+    </div>
+
+    <script>
+        // Using let and const instead of var
+        let todoList = [];
+
+        function addTodo() {
+            const task = document.getElementById('todo-input').value.trim();
+            task && todoList.push(task) && (document.getElementById('todo-input').value = '') && displayTodos();
+        }
+
+        function displayTodos() {
+            const todoListContainer = document.getElementById('todo-list');
+            todoListContainer.innerHTML = '';
+
+            todoList.forEach((todo, index) => {
+                const todoItem = document.createElement('div');
+                todoItem.className = 'todo-item';
+                todoItem.textContent = `${index + 1}. ${todo}`;
+                todoListContainer.appendChild(todoItem);
+            });
+        }
+    </script>
+</body>
+</html>
+

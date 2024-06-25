@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div id="multiplication-table"></div>
+    <script>
+        // Function to generate a multiplication table and display it on the webpage
+        function generateMultiplicationTable(size) {
+            let table = '<table>';
+            for (let i = 1; i <= size; i++) {
+                table += '<tr>';
+                for (let j = 1; j <= size; j++) {
+                    table += '<td>' + (i * j) + '</td>';
+                }
+                table += '</tr>';
+            }
+            table += '</table>';
+            document.getElementById('multiplication-table').innerHTML = table;
+        }
+
+        // Set the size of the multiplication table
+        const tableSize = 10;
+
+        // Generate and display the multiplication table
+        generateMultiplicationTable(tableSize);
+    </script>
+</body>
+</html>

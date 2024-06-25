@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asterisk Triangle</title>
+</head>
+<body>
+    <label for="input">Enter the height of the triangle:</label>
+    <input type="number" id="input" min="1">
+    <button onclick="generateTriangle()">Generate Triangle</button>
+    <pre id="output"></pre>
+
+    <script>
+        function generateTriangle() {
+            const height = +document.getElementById("input").value;
+
+            // Ensure input is a positive integer
+            if (height <= 0 || height % 1 !== 0) {
+                document.getElementById("output").innerText = "Please enter a valid positive integer.";
+                return;
+            }
+
+            let triangle = "";
+            for (let i = 1; i <= height; i++) {
+                // Add asterisks for each row
+                for (let j = 1; j <= i; j++) {
+                    triangle += "* ";
+                }
+                // Add line break after each row
+                triangle += "\n";
+            }
+
+            document.getElementById("output").innerText = triangle;
+        }
+    </script>
+</body>
+</html>
+
